@@ -64,6 +64,7 @@ Setup Steps :
 	2. run composer install
 	3. setup the DB in .env file
 	4. Add NEWS_API_KEY,NY_API_KEY,GUARDIAN_API_KEY values in .env
-	2. php artisan db:seed --class=SettingSeeder
+	5. run php artisan db:seed --class=SettingSeeder
+	6. run php artisan app:fetch-news-articles to fetch articles from providers
 
 
