@@ -121,7 +121,7 @@
 <script>
     $(document).ready(function() {
         // App globals
-        let currentPage = 1;
+        var currentPage = 1;
         
         // Load metadata (Dropdown options)
         function loadMetadata() {
@@ -133,12 +133,12 @@
         }
         
         function populateSelect(selector, items, isFilter) {
-            const select = $(selector);
+            var select = $(selector);
             if (!isFilter) select.empty();
             
             $.each(items, function(id, name) {
                 // For filter dropdowns we use name as value, for prefs we use ID
-                const val = isFilter ? name : id; 
+                var val = isFilter ? name : id; 
                 select.append($('<option></option>').val(val).text(name));
             });
         }
@@ -149,7 +149,7 @@
             $('#articlesContainer').empty();
             $('#pagination').empty();
             
-            const params = {
+            var params = {
                 page: currentPage,
                 keyword: $('#filterKeyword').val(),
                 date: $('#filterDate').val(),
@@ -165,14 +165,14 @@
                     return;
                 }
 
-                let articlesHtml = '';
+                var articlesHtml = '';
                 res.data.forEach(article => {
-                    const category = article.category.name;
-                    const source = article.source.name;
-                    const author = article.author.name;
-                    const date = new Date(article.published_at).toLocaleDateString();
-                    const desc = article.description.substring(0, 150);
-                    const title = article.title;
+                    var category = article.category.name;
+                    var source = article.source.name;
+                    var author = article.author.name;
+                    var date = new Date(article.published_at).toLocaleDateString();
+                    var desc = article.description.substring(0, 150);
+                    var title = article.title;
 
                     articlesHtml += `
                         <tr>
@@ -199,7 +199,7 @@
         }
         
         function renderPagination(res) {
-            let pagHtml = '';
+            var pagHtml = '';
             
             if (res.prev_page_url) {
                 pagHtml += `<li class="page-item"><a class="page-link shadow-sm bg-dark text-white border-secondary" href="#" data-page="${res.current_page - 1}">Previous</a></li>`;
@@ -220,7 +220,7 @@
         
         $('#pagination').on('click', '.page-link', function(e) {
             e.preventDefault();
-            const page = $(this).data('page');
+            var page = $(this).data('page');
             if (page) {
                 currentPage = page;
                 fetchArticles();
