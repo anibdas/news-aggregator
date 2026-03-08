@@ -66,5 +66,6 @@ Setup Steps :
 	4. Add NEWS_API_KEY,NY_API_KEY,GUARDIAN_API_KEY values in .env
 	5. run php artisan db:seed --class=SettingSeeder
 	6. run php artisan app:fetch-news-articles to fetch articles from providers
-
+	7. php artisan server
+	8. launch 127.0.0.1:8000 in the browser
 
