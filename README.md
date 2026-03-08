@@ -58,5 +58,12 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
 
+Setup Steps :
 
-php artisan db:seed --class=SettingSeeder
+	1. clone the repository
+	2. run composer install
+	3. setup the DB in .env file
+	4. Add NEWS_API_KEY,NY_API_KEY,GUARDIAN_API_KEY values in .env
+	2. php artisan db:seed --class=SettingSeeder
+
+
