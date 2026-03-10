@@ -52,8 +52,8 @@ class FetchNewsArticlesCommand extends Command
         // Register all news sources
         $sources = [
             new \App\Services\NewsSources\NewsApiSource($news_sync_date, $page),
-            // new \App\Services\NewsSources\TheGuardianSource($news_sync_date, $page),
-            // new \App\Services\NewsSources\NewYorkTimesSource($news_sync_date, $page),
+            new \App\Services\NewsSources\TheGuardianSource($news_sync_date, $page),
+            new \App\Services\NewsSources\NewYorkTimesSource($news_sync_date, $page),
         ];
 
         $aggregator->aggregate($sources);

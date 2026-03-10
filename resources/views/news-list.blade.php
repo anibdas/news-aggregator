@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" data-bs-theme="dark">
+<html data-bs-theme="dark">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -25,10 +25,6 @@
         #articlesTable tbody td a { font-weight: 500; }
         #articlesTable tbody td a:hover { text-decoration: underline !important; }
 
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: #121212; }
-        ::-webkit-scrollbar-thumb { background: #444; border-radius: 4px; }
-        ::-webkit-scrollbar-thumb:hover { background: #555; }
     </style>
 </head>
 <body>
@@ -120,30 +116,25 @@
 
 <script>
     $(document).ready(function() {
-        // App globals
         var currentPage = 1;
         
-        // Load metadata (Dropdown options)
-        function loadMetadata() {
+        function loadFilterdata() {
             $.get('/api/metadata', function(data) {
-                // Populate filters
-                populateSelect('#filterCategory', data.categories, true);
-                populateSelect('#filterSource', data.sources, true);
+                setDropdownData('#filterCategory', data.categories, true);
+                setDropdownData('#filterSource', data.sources, true);
             });
         }
         
-        function populateSelect(selector, items, isFilter) {
+        function setDropdownData(selector, items, isFilter) {
             var select = $(selector);
             if (!isFilter) select.empty();
             
             $.each(items, function(id, name) {
-                // For filter dropdowns we use name as value, for prefs we use ID
                 var val = isFilter ? name : id; 
                 select.append($('<option></option>').val(val).text(name));
             });
         }
         
-        // Fetch Articles
         function fetchArticles() {
             $('#loadingSpinner').show();
             $('#articlesContainer').empty();
@@ -239,8 +230,7 @@
             fetchArticles();
         });
         
-        // Init
-        loadMetadata();
+        loadFilterdata();
         fetchArticles();
     });
 </script>
